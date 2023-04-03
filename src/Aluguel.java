@@ -7,13 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 
-public class Aluguel implements ActionListener {
-    private JButton botao;
+public class Aluguel {
 
-    public void janela2() {
-        botao.addActionListener(this);
-
-    }
 
 
     public static void main(String[] args) {
@@ -22,40 +17,57 @@ public class Aluguel implements ActionListener {
 
 
         JFrame janela = new JFrame("Aluguel de Carros");
-        JButton botao = new JButton("Salvar");
-        janela.setSize(400, 600);
+        janela.setSize(500, 600);
         janela.setVisible(true);
-
-
-
         JPanel painel = new JPanel();
+
         janela.getContentPane().add(painel);
-        janela.getContentPane().add(botao);
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel dadosCliente = new JLabel("Dados do cliente: ");
+
         JLabel nom = new JLabel("Nome: ");
+
         JLabel cpf = new JLabel("CPF: ");
+
         JLabel tel = new JLabel("Tel: ");
+
         JLabel dadosCarro = new JLabel("Dados do Carro");
+
         JLabel nomCarro = new JLabel("Nome: ");
+
         JLabel placa = new JLabel("Placa: ");
+
         JLabel ano = new JLabel("Ano: ");
+
         JLabel dtaLocacao = new JLabel("Data de Locação: ");
+
         JLabel dtaEntrega = new JLabel("Data de Entrega: ");
+
+        //DEFINE OS ADD DO PAINEL
+
+        painel.add(dadosCliente);
+        painel.add(nom);
+        painel.add(cpf);
+        painel.add(tel);
+        painel.add(dadosCarro);
+        painel.add(nomCarro);
+        painel.add(placa);
+        painel.add(ano);
+        painel.add(dtaLocacao);
+        painel.add(dtaEntrega);
 
 
         //DEFINE POSICAO
-        dadosCliente.setBounds(10, 30, 120, 40);
-        nom.setBounds(30, 60, 100,40);
-        cpf.setBounds(35, 80, 100,40);
-        tel.setBounds(40, 100, 100,40);
-        dadosCarro.setBounds(10, 140, 100, 40);
-        nomCarro.setBounds(35, 160,100,40);
-        placa.setBounds(40,180,100,40);
-        ano.setBounds(45,200,100,40);
-        dtaLocacao.setBounds(50,220,150,40);
-        dtaEntrega.setBounds(55,240,100,40);
+        dadosCliente.setBounds(50, 80, 120, 50);
+        nom.setBounds(50, 110, 100,50);
+        cpf.setBounds(50, 130, 100,50);
+        tel.setBounds(50, 150, 100,50);
+        dadosCarro.setBounds(50, 180, 100, 50);
+        nomCarro.setBounds(50, 210,100,50);
+        placa.setBounds(50,230,100,50);
+        ano.setBounds(50,250,100,50);
+        dtaLocacao.setBounds(50,270,120,50);
+        dtaEntrega.setBounds(50,290,120,50);
 
 
         //DEFINE AS MASCARAS
@@ -66,7 +78,8 @@ public class Aluguel implements ActionListener {
         MaskFormatter mascaraDtaLocacao = null;
         MaskFormatter mascaraDtaEntrega = null;
 
-        try{
+        try {
+
             mascaraCpf = new MaskFormatter("#########-##");
             mascaraTel = new MaskFormatter("(##)####-####");
             mascaraPlaca = new MaskFormatter("UUU-####");
@@ -79,9 +92,9 @@ public class Aluguel implements ActionListener {
             mascaraAno.setPlaceholderCharacter('_');
             mascaraDtaLocacao.setPlaceholderCharacter('_');
             mascaraDtaEntrega.setPlaceholderCharacter('_');
-        }
-        catch (ParseException excp){
-            System.out.println("Erro na formatação: ");
+
+        }  catch (ParseException excp){
+            System.out.println("Erro na formatação: " +excp.getMessage());
             System.exit(-1);
         }
 
@@ -92,33 +105,36 @@ public class Aluguel implements ActionListener {
         JFormattedTextField jFormattedTextAno = new JFormattedTextField(mascaraAno);
         JFormattedTextField jFormattedTextDtaLocacao = new JFormattedTextField(mascaraDtaLocacao);
         JFormattedTextField jFormattedTextDtaEntrega = new JFormattedTextField(mascaraDtaEntrega);
-        jFormattedTextCpf.setBounds(135,80,100,40);
-        jFormattedTextTel.setBounds(140,100,100,40);
-        jFormattedTextPlaca.setBounds(140,180,100,40);
-        jFormattedTextAno.setBounds(145,200,100,40);
-        jFormattedTextDtaLocacao.setBounds(150,220,100,40);
-        jFormattedTextDtaEntrega.setBounds(155,240,100,40);
 
 
     //DEFINE OS ADD
-        painel.add(dadosCliente);
-        painel.add(nom);
-        painel.add(cpf);
-        painel.add(tel);
-        painel.add(dadosCarro);
-        painel.add(nomCarro);
-        painel.add(placa);
-        painel.add(ano);
-        painel.add(dtaLocacao);
-        painel.add(dtaEntrega);
+
         painel.add(jFormattedTextCpf);
         painel.add(jFormattedTextTel);
         painel.add(jFormattedTextPlaca);
         painel.add(jFormattedTextAno);
         painel.add(jFormattedTextDtaLocacao);
         painel.add(jFormattedTextDtaEntrega);
-        janela.add(botao);
-        botao.setBounds(200,300,150,80);
+
+        jFormattedTextCpf.setBounds(255,135,130,20);
+        jFormattedTextTel.setBounds(255,155,130,20);
+        jFormattedTextPlaca.setBounds(255,238,130,20);
+        jFormattedTextAno.setBounds(255,258,130,20);
+        jFormattedTextDtaLocacao.setBounds(255,278,130,20);
+        jFormattedTextDtaEntrega.setBounds(255,298,130,20);
+
+        JButton botao = new JButton("Salvar");
+
+        painel.add(botao);
+
+        botao.setBounds(220, 420, 130, 20);
+
+        botao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Dados Salvos com sucesso!");
+            }
+        });
 
 
 
@@ -127,11 +143,6 @@ public class Aluguel implements ActionListener {
 
 
 
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        botao.setText("Aluguel realizado com sucesso!");
 
     }
 }
